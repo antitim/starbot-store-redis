@@ -3,7 +3,7 @@
 const redis = require("redis");
 
 /**
- * Хранилище использующее объект js для хранения состояния
+ * Хранилище использующее redis для хранения состояния
  */
 class StarbotStoreRedis {
   constructor (settings) {
