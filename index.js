@@ -1,12 +1,12 @@
 'use strict';
 
-const redis = require("redis");
+const redis = require('redis');
 
 /**
- * Хранилище использующее redis для хранения состояния
+ * The module uses redis to store state
  */
 class StarbotStoreRedis {
-  constructor (settings) {
+  constructor (settings, botName) {
     settings = settings || {};
 
     const client = redis.createClient({
@@ -17,28 +17,28 @@ class StarbotStoreRedis {
       db: settings.db || 0
     });
 
-    this.run = function (botName) {
+    this.get = async (userId) => {
+      return new Promise((resolve, reject) => {
+        client.get(botName + ':' + userId, function (err, reply) {
+          if (!err) {
+            if (reply) {
+              resolve(JSON.parse(reply));
+            } else {
+              reject();
+            }
+          } else {
+            throw new Error('Redis Error: ' + err);
+          }
+        });
+      });
+    };
 
-      return {
-        async get (userId) {
-          return new Promise(function (resolve, reject) {
-            client.get(botName + ':' + userId, function (err, reply) {
-              if (reply) {
-                resolve(JSON.parse(reply));
-              } else {
-                reject();
-              }
-            });
-          });
-        },
-        async set (userId, newState) {
-          return new Promise(function (resolve, reject) {
-            client.set(botName + ':' + userId, JSON.stringify(newState), function () {
-              resolve();
-            });
-          });
-        }
-      };
+    this.set = async (userId, newState) => {
+      return new Promise((resolve, reject) => {
+        client.set(botName + ':' + userId, JSON.stringify(newState), function () {
+          resolve();
+        });
+      });
     };
   }
 }

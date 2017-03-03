@@ -1,6 +1,34 @@
 # starbot-store-redis [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url]
 
-## Лицензия
+## About
+
+Store module for [StarBot](https://github.com/antitim/starbot)
+
+## Installation
+
+```sh
+$ npm install --save starbot-store-redis
+```
+
+## Options
+
+```js
+const bot = new Starbot({
+  ...
+  store: {
+    type: 'starbot-store-redis',
+    host: 'localhost', // default 'localhost'
+    port: 6379, // default 6379
+    user: 'user',
+    password: 'password',
+    db: 0 // default 0
+  },
+  ...
+});
+```
+
+
+## License
 
 MIT © [antitim](http://vk.com/antitim)
 
