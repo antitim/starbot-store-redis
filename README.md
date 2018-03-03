@@ -12,18 +12,18 @@ $ npm install --save starbot-store-redis
 
 ## Options
 
+Using [redis](https://www.npmjs.com/package/redis). All options are proxied to `redis.createClient`.
+
 ```js
-const bot = new Starbot({
-  ...
-  store: {
-    type: 'starbot-store-redis',
-    host: 'localhost', // default 'localhost'
-    port: 6379, // default 6379
-    user: 'user',
-    password: 'password',
-    db: 0 // default 0
-  },
-  ...
+const StoreRedis = require('starbot-store-redis');
+
+const store = new StoreRedis({
+  host: 'localhost', // default 'localhost'
+  port: 6379, // default 6379
+  user: 'user',
+  password: 'password',
+  db: 0, // default 0
+  prefix: 'botName',
 });
 ```
 

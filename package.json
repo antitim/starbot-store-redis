@@ -1,11 +1,10 @@
 {
   "name": "starbot-store-redis",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Store Object for Starbot",
   "author": {
     "name": "antitim",
-    "email": "antitim@yandex.ru",
-    "url": ""
+    "email": "antitim@yandex.ru"
   },
   "main": "index.js",
   "keywords": [

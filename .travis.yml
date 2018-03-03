@@ -1,5 +1,5 @@
 language: node_js
 node_js:
-  - v7
+  - "7"
 services:
-- redis-server
+  - redis-server
