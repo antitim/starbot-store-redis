@@ -4,42 +4,55 @@ const redis = require('redis');
 
 /**
  * The module uses redis to store state
+ * @class
  */
 class StarbotStoreRedis {
-  constructor (settings, botName) {
-    settings = settings || {};
-
-    const client = redis.createClient({
-      host: settings.host || 'localhost',
-      port: settings.port || 6379,
-      user: settings.user,
-      password: settings.password,
-      db: settings.db || 0
+  /**
+   * Constructor
+   * @param {Object} settings Redis.createClient config
+   */
+  constructor (settings) {
+    this.client = redis.createClient({
+      ...settings
     });
+  }
 
-    this.get = async (userId) => {
-      return new Promise((resolve, reject) => {
-        client.get(botName + ':' + userId, function (err, reply) {
-          if (!err) {
-            if (reply) {
-              resolve(JSON.parse(reply));
-            } else {
-              reject();
-            }
-          } else {
-            throw new Error('Redis Error: ' + err);
-          }
-        });
-      });
-    };
+  /**
+   * @param {String} key
+   */
+  async get (key) {
+    return new Promise((resolve, reject) => {
+      client.get(key, (err, reply) => {
+        if (err) return reject(err);
+        
+        try {
+          const data = JSON.parse(reply);
+        } catch (err) {
+          return reject(err);
+        }
 
-    this.set = async (userId, newState) => {
-      return new Promise((resolve, reject) => {
-        client.set(botName + ':' + userId, JSON.stringify(newState), function () {
-          resolve();
-        });
+        resolve(data);
       });
-    };
+    });
+  }
+
+  /**
+   * @param {String} key 
+   * @param {Object} value 
+   */
+  async set (key, value) {
+    return new Promise((resolve, reject) => {
+      try {
+        const data = JSON.stringify(value);
+      } catch(err) {
+        return reject(err);
+      }
+
+      this.client.set(key, data, (err) => {
+        if (err) return reject(err);
+        resolve();
+      });
+    });
   }
 }
 
