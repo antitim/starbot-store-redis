@@ -27,11 +27,10 @@ class StarbotStoreRedis {
         
         try {
           const data = JSON.parse(reply);
+          resolve(data);
         } catch (err) {
           return reject(err);
         }
-
-        resolve(data);
       });
     });
   }
@@ -44,14 +43,14 @@ class StarbotStoreRedis {
     return new Promise((resolve, reject) => {
       try {
         const data = JSON.stringify(value);
+
+        this.client.set(key, data, (err) => {
+          if (err) return reject(err);
+          resolve();
+        });
       } catch(err) {
         return reject(err);
       }
-
-      this.client.set(key, data, (err) => {
-        if (err) return reject(err);
-        resolve();
-      });
     });
   }
 }

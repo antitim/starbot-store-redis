@@ -4,8 +4,7 @@
   "description": "Store Object for Starbot",
   "author": {
     "name": "antitim",
-    "email": "antitim@yandex.ru",
-    "url": ""
+    "email": "antitim@yandex.ru"
   },
   "main": "index.js",
   "keywords": [
