@@ -12,9 +12,7 @@ class StarbotStoreRedis {
    * @param {Object} settings Redis.createClient config
    */
   constructor (settings) {
-    this.client = redis.createClient({
-      ...settings
-    });
+    this.client = redis.createClient(settings);
   }
 
   /**
