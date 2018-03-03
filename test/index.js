@@ -24,4 +24,18 @@ describe('Starbot Store', () => {
     state2.should.equal('bar2');
     state3.should.equal('bar3');
   });
+  it('JSON parse', async () => {
+    let store = new Store({
+      prefix: 'botName1'
+    });
+
+    await store.set('user1', { key: 1, bar: 'foo' });
+    await store.set('user2', [4, 'foo']);
+
+    let state1 = await store.get('user1');
+    let state2 = await store.get('user2');
+
+    state1.should.deep.equal({ key: 1, bar: 'foo' });
+    state2.should.deep.equal([4, 'foo']);
+  });
 });
