@@ -20,7 +20,7 @@ class StarbotStoreRedis {
    */
   async get (key) {
     return new Promise((resolve, reject) => {
-      client.get(key, (err, reply) => {
+      this.client.get(key, (err, reply) => {
         if (err) return reject(err);
         
         try {

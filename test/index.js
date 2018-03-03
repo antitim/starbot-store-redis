@@ -5,8 +5,12 @@ const Store = require('..');
 
 describe('Starbot Store', () => {
   it('set and get', async () => {
-    let store1 = new Store({}, 'botName1');
-    let store2 = new Store({}, 'botName2');
+    let store1 = new Store({
+      prefix: 'botName1'
+    });
+    let store2 = new Store({
+      prefix: 'botName2'
+    });
 
     await store1.set('user1', 'bar1');
     await store1.set('user2', 'bar2');
