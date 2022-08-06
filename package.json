@@ -1,6 +1,6 @@
 {
   "name": "starbot-store-redis",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Store Object for Starbot",
   "author": {
     "name": "antitim",
@@ -17,14 +17,14 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "chai": "^3.5.0",
-    "eslint": "^3.9.1",
-    "eslint-config-standard": "^6.2.1",
-    "eslint-plugin-promise": "^3.3.0",
-    "eslint-plugin-standard": "^2.0.1",
-    "mocha": "^3.1.2"
+    "chai": "^4.3.6",
+    "eslint": "^8.21.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-standard": "^5.0.0",
+    "mocha": "^10.0.0"
   },
   "dependencies": {
-    "redis": "^2.6.5"
+    "redis": "^4.2.0"
   }
 }

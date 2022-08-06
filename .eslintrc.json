@@ -1,10 +1,10 @@
 {
-    "extends": "standard",
-    "plugins": [
-        "standard",
-        "promise"
-    ],
-    "rules": {
-        "semi": ["error", "always"]
-    }
+  "extends": "standard",
+  "plugins": ["standard", "promise"],
+  "env": {
+    "mocha": true
+  },
+  "rules": {
+    "semi": ["error", "always"]
+  }
 }

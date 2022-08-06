@@ -22,7 +22,7 @@ class StarbotStoreRedis {
     return new Promise((resolve, reject) => {
       this.client.get(key, (err, reply) => {
         if (err) return reject(err);
-        
+
         try {
           const data = JSON.parse(reply);
           resolve(data);
@@ -34,8 +34,8 @@ class StarbotStoreRedis {
   }
 
   /**
-   * @param {String} key 
-   * @param {Object} value 
+   * @param {String} key
+   * @param {Object} value
    */
   async set (key, value) {
     return new Promise((resolve, reject) => {
@@ -46,7 +46,7 @@ class StarbotStoreRedis {
           if (err) return reject(err);
           resolve();
         });
-      } catch(err) {
+      } catch (err) {
         return reject(err);
       }
     });
